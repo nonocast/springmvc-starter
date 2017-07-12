@@ -1,0 +1,30 @@
+subprojects {
+  group 'cn.nonocast'
+  version '0.1.0'
+
+  apply plugin: 'java'
+  apply plugin: 'idea'
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+  [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+  ext {
+    springBootVersion = '1.5.4.RELEASE'
+  }
+
+  repositories {
+    jcenter()
+  }
+}
+
+dependencies {
+
+}
+
+// 显示当前项目下所有用于 compile 的 jar.
+task lsjars(description: 'Display all compile jars.') {
+  doLast {
+    configurations.compile.each { File file -> println file.name }
+  }
+}
