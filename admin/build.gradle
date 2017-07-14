@@ -10,8 +10,8 @@ buildscript {
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-  compile project(":core")
-
+	compile('com.h2database:h2')
+	compile project(":core")
 	// compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	// compile('org.springframework.boot:spring-boot-starter-freemarker')
 	// compile('org.springframework.boot:spring-boot-starter-security')

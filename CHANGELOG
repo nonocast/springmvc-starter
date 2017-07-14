@@ -4,8 +4,7 @@ todolist
 
 master
 
-Jul 12, 2017
-v0.1.1
-
-v0.1.0 by nonocast
+Jul 12, 2017 by nonocast
 multi-projects using gradle
+- h2 sql 支持单引号的String
+- h2 的登录时url必须和datasource的url一致

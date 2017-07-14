@@ -1,4 +1,4 @@
-subprojects {
+allprojects {
   group 'cn.nonocast'
   version '0.1.0'
 
@@ -9,12 +9,14 @@ subprojects {
   targetCompatibility = 1.8
   [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
 
-  ext {
-    springBootVersion = '1.5.4.RELEASE'
-  }
-
   repositories {
     jcenter()
+  }
+}
+
+subprojects {
+  ext {
+    springBootVersion = '1.5.4.RELEASE'
   }
 }
 
