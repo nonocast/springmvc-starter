@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
     entry: './src/main/ts/app.tsx',
     output: {
-        path: __dirname + './build/resources/main/static/public/script/',
+        path: __dirname + '/build/resources/main/static/public/script/',
         filename: 'bundle.js'
     },
     devtool: "source-map",

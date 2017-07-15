@@ -3,11 +3,11 @@
 
 class Hello extends React.Component<any, any> {
     render() {
-        return <div>hello world, react</div>
+        return <h1>hello world, react</h1>
     }
 }
 
 ReactDOM.render(
     <Hello />,
-    $('.container').get(0)
+    $('.react-container').get(0)
 );

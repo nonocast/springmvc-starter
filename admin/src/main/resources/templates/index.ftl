@@ -18,8 +18,9 @@
     <script src="//cdn.bootcss.com/Director/1.2.8/director.min.js"></script>
 </head>
 <body>
-<h1>oops, missing bundle.js.</h1>
-<section class="react-container" />
+<section class="react-container">
+    <h1>oops, missing bundle.js.</h1>
+</section>
 <script type="text/javascript" src="/public/script/bundle.js"></script>
 </body>
 </html>
