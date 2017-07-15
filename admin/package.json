@@ -1,0 +1,31 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "director": "^1.2.8",
+    "jquery": "^3.1.0",
+    "source-map-loader": "^0.1.5",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nonocast/springmvc-starter.git"
+  },
+  "keywords": [
+    "springmvc", "starter"
+  ],
+  "author": "nonocast@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nonocast/springmvc-starter/issues"
+  },
+  "homepage": "https://github.com/nonocast/springmvc-starter#readme"
+}
