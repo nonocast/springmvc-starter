@@ -11,4 +11,5 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.data:spring-data-rest-webmvc')
 }
