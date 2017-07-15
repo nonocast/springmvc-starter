@@ -4,7 +4,7 @@ import cn.nonocast.model.Meeting;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "meeting", path = "meeting")
+@RepositoryRestResource
 public interface MeetingRepository extends PagingAndSortingRepository<Meeting, Long> {
 
 }

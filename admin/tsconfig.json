@@ -20,7 +20,6 @@
     "!node_modules/**"
   ],
   "files": [
-    "./typings/index.d.ts",
     "./src/main/ts/app.d.ts",
     "./src/main/ts/app.tsx"
   ],

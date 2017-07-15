@@ -4,12 +4,9 @@ import javax.persistence.*;
 
 @Entity
 public class Meeting {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private @Id @GeneratedValue  Long id;
 
-    @Column(nullable=false)
-    private String name;
+    private @Column(nullable=false) String name;
 
     public Long getId() {
         return id;

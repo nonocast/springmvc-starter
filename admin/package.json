@@ -4,15 +4,22 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
+    "@types/react": "^15.0.38",
+    "@types/react-dom": "^15.5.1",
+    "axios": "^0.16.2",
     "director": "^1.2.8",
     "jquery": "^3.1.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "source-map-loader": "^0.1.6",
     "ts-loader": "^0.8.2",
-    "typescript": "^1.8.10",
-    "webpack-dev-server": "^1.14.1"
+    "typescript": "^1.8.10"
   },
   "devDependencies": {
-    "webpack": "^2.1.0-beta.22"
+    "awesome-typescript-loader": "^3.2.1",
+    "json-loader": "^0.5.4",
+    "source-map-loader": "^0.1.6",
+    "typescript": "^1.8.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -14,7 +14,7 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.tsx?$/, loader: 'ts-loader' }
+            { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
         ],
         preLoaders: [
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -26,6 +26,7 @@ module.exports = {
         "react-dom": "ReactDOM",
         "jquery": "$",
         "classnames": "classNames",
-        "monent": "monent"
+        "monent": "monent",
+        "axios": "axios"
     }
 };

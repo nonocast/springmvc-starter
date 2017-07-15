@@ -16,11 +16,13 @@
     <script src="//cdn.bootcss.com/classnames/2.2.5/dedupe.min.js"></script>
     <script src="//cdn.bootcss.com/moment.js/2.14.1/moment-with-locales.min.js"></script>
     <script src="//cdn.bootcss.com/Director/1.2.8/director.min.js"></script>
+    <script src="//cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
 </head>
 <body>
-<section class="react-container">
+<div id="react">
     <h1>oops, missing bundle.js.</h1>
-</section>
+</div>
+
 <script type="text/javascript" src="/public/script/bundle.js"></script>
 </body>
 </html>

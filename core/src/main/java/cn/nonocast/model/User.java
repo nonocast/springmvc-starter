@@ -4,15 +4,11 @@ import javax.persistence.*;
 
 @Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private @Id @GeneratedValue Long id;
 
-    @Column(nullable = false)
-    private String name;
+    private @Column(nullable=false) String name;
 
-    @Column(nullable = false)
-    private String email;
+    private @Column String email;
 
     public Long getId() {
         return id;

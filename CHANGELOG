@@ -1,10 +1,15 @@
-todolist
-- database
+todo:
 - security
 
 master
 
+
+Jul 16, 2017 by nonocast
+add rest api
+add hal browser, http://localhost/rest/browser
+add react layout
+
 Jul 12, 2017 by nonocast
 multi-projects using gradle
-- h2 sql 支持单引号的String
-- h2 的登录时url必须和datasource的url一致
+h2 sql 支持单引号的String
+h2 的登录时url必须和datasource的url一致
