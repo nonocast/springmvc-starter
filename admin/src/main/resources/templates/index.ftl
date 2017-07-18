@@ -7,11 +7,11 @@
     <title>admin</title>
 
     <link rel="shortcut icon" href="/public/favicon.ico">
-    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.muicss.com/mui-0.9.18/css/mui.min.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="/public/style.css" rel="stylesheet">
-    <script src="//cdn.bootcss.com/react/15.2.1/react.min.js"></script>
-    <script src="//cdn.bootcss.com/react/15.2.1/react-dom.min.js"></script>
+    <#--<script src="//cdn.bootcss.com/react/15.2.1/react.min.js"></script>-->
+    <script src="//cdn.bootcss.com/react/15.2.1/react.js"></script>
+    <script src="//cdn.bootcss.com/react/15.2.1/react-dom.js"></script>
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/classnames/2.2.5/dedupe.min.js"></script>
     <script src="//cdn.bootcss.com/moment.js/2.14.1/moment-with-locales.min.js"></script>
@@ -20,9 +20,10 @@
 </head>
 <body>
 <div id="react">
-    <h1>oops, missing bundle.js.</h1>
+    <h1 style="color:#777;">oops, missing bundle.js.</h1>
 </div>
 
-<script type="text/javascript" src="/public/script/bundle.js"></script>
+<script type="text/javascript" src="/public/script/built/bundle.js"></script>
 </body>
 </html>
+
