@@ -28,7 +28,9 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        userRepository.save(new User("jean", "jean@shgbit.com"));
+        for(int i = 1; i <= 500; ++i) {
+            userRepository.save(new User(String.format("测试用户-%03d", i), String.format("test-%03d@yahoo.com", i)));
+        }
 
         List<Document> documents = new ArrayList<Document>();
         documents.add(new Document("Document-001", "document-001.pdf", 1024l, "admin", new Date()));
