@@ -1,5 +1,8 @@
 package cn.nonocast.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -18,7 +21,6 @@ public class Meeting {
     private @Column(nullable=false) String operatedBy;
 
     private @Column(nullable=false) Date updatedAt;
-
 
     private @OneToMany(mappedBy = "meeting", fetch = FetchType.EAGER) List<Document> documents;
 

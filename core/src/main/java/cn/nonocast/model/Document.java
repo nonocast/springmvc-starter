@@ -1,5 +1,7 @@
 package cn.nonocast.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,8 +19,7 @@ public class Document {
 
     private @Column(nullable=false) Date updatedAt;
 
-
-    private @ManyToOne @JoinColumn(name="meeting_id") Meeting meeting;
+    private @ManyToOne @JoinColumn(name="meeting_id") @JsonIgnore Meeting meeting;
 
     public Document() {}
 

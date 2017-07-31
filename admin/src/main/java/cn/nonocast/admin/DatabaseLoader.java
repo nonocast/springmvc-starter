@@ -8,13 +8,13 @@ import cn.nonocast.repository.MeetingRepository;
 import cn.nonocast.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Component
+@ComponentScan(basePackages="cn.nonocast.controller")
 public class DatabaseLoader implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
@@ -32,20 +32,17 @@ public class DatabaseLoader implements CommandLineRunner {
             userRepository.save(new User(String.format("测试用户-%03d", i), String.format("test-%03d@yahoo.com", i)));
         }
 
-        List<Document> documents = new ArrayList<Document>();
-        documents.add(new Document("Document-001", "document-001.pdf", 1024l, "admin", new Date()));
-        documents.add(new Document("Document-002", "document-002.pdf", 2048l, "admin", new Date()));
+        int documentCount = 0;
+        for(int i = 1; i <= 100; ++i) {
+            Meeting meeting = new Meeting(String.format("会议-%03d", i), new Date(), "曹晖", "", "admin", new Date());
+            meetingRepository.save(meeting);
 
-        Meeting meeting = new Meeting("Meeting-001", new Date(), "曹晖", "", "admin", new Date());
-
-        for(Document d : documents) {
-            d.setMeeting(meeting);
-        }
-        meeting.setDocuments(documents);
-
-        meetingRepository.save(meeting);
-        for(Document d : documents) {
-            documentRepository.save(d);
+            for(int j = 1; j <=20; ++j) {
+                String title = String.format("文档-%03d", ++documentCount);
+                Document document = new Document(title, title + ".pdf", 1024l, "admin", new Date());
+                document.setMeeting(meeting);
+                documentRepository.save(document);
+            }
         }
     }
 }
