@@ -52,8 +52,8 @@ class UserTable extends Component {
                   <TableRowColumn>{each.email}</TableRowColumn>
                   <TableRowColumn>
                     <div>
-                      <a href="#" style={{ marginRight: 10 }}>Edit</a>
-                      <a href="#">Delete</a>
+                      <FlatButton style={{ minWidth: 36, marginRight: 10 }} onTouchTap={this.props.openDialog.bind(this, each)}>Edit</FlatButton>
+                      <FlatButton style={{ minWidth: 36 }} onTouchTap={this.delete}>Delete</FlatButton>
                     </div>
                   </TableRowColumn>
                 </TableRow>

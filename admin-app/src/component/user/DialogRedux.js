@@ -9,6 +9,7 @@ export default function dialog(state = initialState, action) {
       return {
         ...state,
         visible: true,
+        user: action.user
       };
     }
 
@@ -24,9 +25,10 @@ export default function dialog(state = initialState, action) {
   }
 }
 
-export function openDialog(user) {
+export function openDialog(user = null) {
   return {
-    type: 'SHOW_USER_MODAL'
+    type: 'SHOW_USER_MODAL',
+    user
   };
 }
 

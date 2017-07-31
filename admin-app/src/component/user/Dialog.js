@@ -24,8 +24,6 @@ class UserDialog extends Component {
   }
 
   render() {
-    console.log(this.props.closeDialog);
-
     const actions = [
       <FlatButton
         label="Cancel"
@@ -33,7 +31,7 @@ class UserDialog extends Component {
         onTouchTap={this.props.closeDialog}
       />,
       <FlatButton
-        label="Submit"
+        label={this.props.user?"Update":"Save"}
         primary={true}
         disabled={false}
         onTouchTap={this.submit}
@@ -42,13 +40,13 @@ class UserDialog extends Component {
 
     return (
       <Dialog
-          title="New User"
+          title={this.props.user?"Edit User":"New User"}
           actions={actions}
           modal={true}
           open={this.props.visible}
         >
-        <TextField hintText="Name" onChange={this.onNameChange} /><br />
-        <TextField hintText="Email" onChange={this.onEmailChange} />
+        <TextField value={this.props.user?this.props.user.name:''} hintText="Name" onChange={this.onNameChange} /><br />
+        <TextField value={this.props.user?this.props.user.email:''} hintText="Email" onChange={this.onEmailChange} />
         </Dialog>
     );
   }
