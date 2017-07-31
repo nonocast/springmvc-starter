@@ -68,3 +68,5 @@ bin/
 .project
 .settings
 classes
+
+*.lock
