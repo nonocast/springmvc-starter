@@ -5,7 +5,12 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Sidebar from './Sidebar'
 import Users from '../view/Users'
+import Meetings from '../view/Meetings'
+import Meeting from '../view/Meeting'
 import NotFound from '../view/NotFound'
+import Moment from 'react-moment';
+// import 'moment/locale/zh-cn'
+// Moment.globalLocale = 'en';
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +35,9 @@ class App extends Component {
           <Sidebar docker={false} open={this.state.isDrawerOpen} onToggleDrawer={this.toggleDrawer} />
           <div style={contentStyle} className="main">
             <Switch>
-              <Redirect exact from='/' to='/user' />
+              <Redirect exact from='/' to='/meeting' />
+              <Route path='/meeting/:id' component={Meeting} />
+              <Route path='/meeting' component={Meetings} />
               <Route path='/user' component={Users} />
               <Route component={NotFound} />
             </Switch>

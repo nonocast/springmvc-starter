@@ -15,20 +15,22 @@ import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left
 import NavigationChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment';
+import "moment/locale/zh-cn"
 
-class UserTable extends Component {
+class MeetingTable extends Component {
   componentDidMount() {
-    this.props.loadUsers();
+    this.props.loadMeetings();
     this.prevPage = this.prevPage.bind(this);
     this.nextPage = this.nextPage.bind(this);
   }
 
   prevPage() {
-    this.props.loadUsers(this.props.page.number-1);
+    this.props.loadMeetings(this.props.page.number-1);
   }
 
   nextPage() {
-    this.props.loadUsers(this.props.page.number+1);
+    this.props.loadMeetings(this.props.page.number+1);
   }
 
   render() {
@@ -39,8 +41,9 @@ class UserTable extends Component {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Email</TableHeaderColumn>
+              <TableHeaderColumn>Title</TableHeaderColumn>
+              <TableHeaderColumn>Chairman</TableHeaderColumn>
+              <TableHeaderColumn>Date</TableHeaderColumn>
               <TableHeaderColumn>Operation</TableHeaderColumn>
             </TableRow>
           </TableHeader>
@@ -48,9 +51,9 @@ class UserTable extends Component {
             {
               items.map((each) =>
                 <TableRow key={each.id}>
-                  {/* <TableRowColumn><Link to={`/user/${each.id}`}>{each.name}</Link></TableRowColumn> */}
-                  <TableRowColumn>{each.name}</TableRowColumn> 
-                  <TableRowColumn>{each.email}</TableRowColumn>
+                  <TableRowColumn><Link to={`/meeting/${each.id}`}>{each.title}</Link></TableRowColumn>
+                   <TableRowColumn>{each.chairman}</TableRowColumn> 
+                  <TableRowColumn><Moment locale="zh-cn" format="YYYY年M月D日 a HH:mm">{each.openedAt}</Moment></TableRowColumn>
                   <TableRowColumn>
                     <div>
                       <FlatButton style={{ minWidth: 36, marginRight: 10 }} onTouchTap={this.props.openDialog.bind(this, each)}>Edit</FlatButton>
@@ -78,4 +81,4 @@ class UserTable extends Component {
   }
 }
 
-export default UserTable;
+export default MeetingTable;

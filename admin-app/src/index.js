@@ -25,11 +25,18 @@ const middlewares = [middleware, ThunkMiddleware]
 
 // Add the reducer to your store on the `router` key
 // Also apply our middleware for navigating
-const store = createStore(
-//  combineReducers({ reducers, router: routerReducer }),
-  reducers,
-  compose(applyMiddleware(...middlewares), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-)
+let store = null;
+if (window.navigator.userAgent.includes('Chrome')) {
+  store = createStore(
+    reducers,
+    compose(applyMiddleware(...middlewares), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+  )
+} else {
+  store = createStore(
+    reducers,
+    applyMiddleware(...middlewares)
+  )
+}
 
 ReactDOM.render(
   <Provider store={store}>
