@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Component
 @ComponentScan(basePackages="cn.nonocast.controller")
@@ -37,7 +38,12 @@ public class DatabaseLoader implements CommandLineRunner {
             Meeting meeting = new Meeting(String.format("会议-%03d", i), new Date(), "曹晖", "", "admin", new Date());
             meetingRepository.save(meeting);
 
-            for(int j = 1; j <=20; ++j) {
+            int p = ThreadLocalRandom.current().nextInt(1, 80);
+            if(i == 1) p = 5;
+            if(i == 2) p = 22;
+            if(i == 3) p = 0;
+
+            for(int j = 1; j <= p; ++j) {
                 String title = String.format("文档-%03d", ++documentCount);
                 Document document = new Document(title, title + ".pdf", 1024l, "admin", new Date());
                 document.setMeeting(meeting);

@@ -70,3 +70,4 @@ bin/
 classes
 
 *.lock
+*.log
