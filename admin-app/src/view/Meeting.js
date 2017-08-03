@@ -83,7 +83,7 @@ class Meeting extends Component {
 
           </ToolbarGroup>
         </Toolbar>
-        <MeetingView />
+        <MeetingView {...this.props} /> 
       </div>
     );
   }

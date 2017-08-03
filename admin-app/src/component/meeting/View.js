@@ -35,7 +35,7 @@ class MeetingView extends Component {
           <TableBody displayRowCheckbox={false}>
             {
               meeting.documents.map((each, i) =>
-                <TableRow key={each.id}  selected={this.isSelected(i)}>
+                <TableRow key={each.id}>
                   <TableRowColumn>{each.title}</TableRowColumn>
                   {/* <TableRowColumn>{each.path}</TableRowColumn> */}
                   <TableRowColumn>{filesize(each.size)}</TableRowColumn>
