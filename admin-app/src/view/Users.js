@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import UserTable from '../component/user/Table';
-import UserDialog from '../component/user/Dialog';
+import UserTable from '../component/users/Table';
+import UserDialog from '../component/users/Dialog';
 import { tableActions, dialogActions } from './UsersRedux';
 import FlatButton from 'material-ui/FlatButton'
 

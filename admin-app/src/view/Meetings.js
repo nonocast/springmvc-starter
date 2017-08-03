@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import MeetingTable from '../component/meeting/Table';
-import MeetingDialog from '../component/meeting/Dialog';
+import MeetingTable from '../component/meetings/Table';
+import MeetingDialog from '../component/meetings/Dialog';
 import { tableActions, dialogActions } from './MeetingsRedux';
 import FlatButton from 'material-ui/FlatButton'
 
