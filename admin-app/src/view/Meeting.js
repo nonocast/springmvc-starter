@@ -16,7 +16,7 @@ class Meeting extends Component {
   }
 
   componentWillUnmount() {
-    this.props.reset();
+    this.props.viewActions.reset();
   }
 
   render() {
