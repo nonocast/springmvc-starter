@@ -88,7 +88,7 @@ class Sidebar extends Component {
             title="Meeting Studio" 
             onTitleTouchTap={this.props.onToggleDrawer} />
           <SelectableList> 
-            <Subheader>Today is <Moment date={today} format="LL" />.</Subheader>
+            <Subheader>Today is <Moment locale="en" date={today} format="LL" />.</Subheader>
             <ListItem
             value={1}
             primaryText="Meeting"

@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadMeeting, reset } from './MeetingRedux'
+import { bindActionCreators } from 'redux';
 import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router-dom'
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableFooter,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
-import Moment from 'react-moment';
-import filesize from 'filesize'
-import 'moment/locale/zh-cn'
+import MeetingView from '../component/meeting/View'
+import { viewActions } from './MeetingRedux'
 
 class Meeting extends Component {
   constructor(props) {
@@ -22,7 +12,7 @@ class Meeting extends Component {
   }
 
   componentDidMount() {
-    this.props.loadMeeting(this.props.match.params.id);
+    this.props.viewActions.loadMeeting(this.props.match.params.id);
   }
 
   componentWillUnmount() {
@@ -37,41 +27,15 @@ class Meeting extends Component {
       return null;
     }
 
+    const buttonStyle = {
+     };
+
     return (
       <div>
         <h1>{meeting.title}</h1>
         <FlatButton style={style} backgroundColor="#eee">Add Document</FlatButton>
-
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Title</TableHeaderColumn>
-              <TableHeaderColumn>Filename</TableHeaderColumn>
-              <TableHeaderColumn>Size</TableHeaderColumn>
-              <TableHeaderColumn>CreatedAt</TableHeaderColumn>
-              <TableHeaderColumn>Operation</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {
-              meeting.documents.map((each) =>
-                <TableRow key={each.id}>
-                  <TableRowColumn>{each.title}</TableRowColumn>
-                  <TableRowColumn>{each.path}</TableRowColumn>
-                  <TableRowColumn>{filesize(each.size)}</TableRowColumn>
-                  <TableRowColumn><Moment fromNow>{each.updatedAt}</Moment></TableRowColumn>
-                  <TableRowColumn>
-                    <div>
-                      <FlatButton style={{ minWidth: 36, marginRight: 10 }}><a href={`http://localhost/download/${each.id}/${each.path}`}>Download</a></FlatButton>
-                      <FlatButton style={{ minWidth: 36, marginRight: 10 }}>Edit</FlatButton>
-                      <FlatButton style={{ minWidth: 36 }}>Delete</FlatButton>
-                    </div>
-                  </TableRowColumn>
-                </TableRow>
-              )
-            }
-          </TableBody>
-        </Table>
+        <MeetingView {...this.props} {...this.props.viewActions} />
+        {/* <MeetingDialog /> */}
       </div>
     );
   }
@@ -79,11 +43,10 @@ class Meeting extends Component {
 
 const result = connect(
   state => ({
-    meeting: state.meeting.current,
+    meeting: state.meeting.view.current
   }),
   dispatch => ({
-    loadMeeting: (id) => dispatch(loadMeeting(id)),
-    reset: () => dispatch(reset())
+    viewActions: bindActionCreators(viewActions, dispatch)
   })
 )(Meeting);
 
