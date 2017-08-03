@@ -12,8 +12,6 @@ import {
   Link,
   NavLink
 } from 'react-router-dom'
-import './Sidebar.css'
-import Moment from 'react-moment';
 
 let SelectableList = makeSelectable(List);
 
@@ -73,13 +71,7 @@ function wrapState(ComposedComponent) {
 SelectableList = wrapState(SelectableList);
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { today: Date.now() };
-  }
-
   render() {
-    const { today } = this.state;
     return (
         <Drawer open={this.props.open}>
           <AppBar 
@@ -88,7 +80,6 @@ class Sidebar extends Component {
             title="Meeting Studio" 
             onTitleTouchTap={this.props.onToggleDrawer} />
           <SelectableList> 
-            <Subheader>Today is <Moment date={today} format="LL" />.</Subheader>
             <ListItem
             value={1}
             primaryText="Meeting"
