@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer'
-import {List, ListItem, makeSelectable} from 'material-ui/List';
+import { List, ListItem, makeSelectable } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -12,8 +12,6 @@ import {
   Link,
   NavLink
 } from 'react-router-dom'
-import './Sidebar.css'
-import Moment from 'react-moment';
 
 let SelectableList = makeSelectable(List);
 
@@ -29,14 +27,14 @@ function wrapState(ComposedComponent) {
 
     componentWillMount() {
       this.rules = {
-        '^/meeting':     1,
-        '^/room':        2,
-        '^/device':      3,
-        '^/user':        4,
-        '^/helpdesk':    5
+        '^/meeting': 1,
+        '^/room': 2,
+        '^/device': 3,
+        '^/user': 4,
+        '^/helpdesk': 5
       }
 
-      this.setState({selectIndex: 0});
+      this.setState({ selectIndex: 0 });
       this.match(this.context.router.route.location.pathname);
 
       let that = this;
@@ -50,8 +48,8 @@ function wrapState(ComposedComponent) {
 
     match(pathname) {
       for (var each in this.rules) {
-        if(pathname.match(each)) {
-          this.setState({selectedIndex: this.rules[each]})
+        if (pathname.match(each)) {
+          this.setState({ selectedIndex: this.rules[each] })
           break;
         }
       }
@@ -73,54 +71,47 @@ function wrapState(ComposedComponent) {
 SelectableList = wrapState(SelectableList);
 
 class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { today: Date.now() };
-  }
-
   render() {
-    const { today } = this.state;
     return (
-        <Drawer open={this.props.open}>
-          <AppBar 
-            className="sidebar"
-            showMenuIconButton={false} 
-            title="Meeting Studio" 
-            onTitleTouchTap={this.props.onToggleDrawer} />
-          <SelectableList> 
-            <Subheader>Today is <Moment locale="en" date={today} format="LL" />.</Subheader>
-            <ListItem
+      <Drawer open={this.props.open}>
+        <AppBar
+          className="sidebar"
+          showMenuIconButton={false}
+          title="Meeting Studio"
+          onTitleTouchTap={this.props.onToggleDrawer} />
+        <SelectableList>
+          <ListItem
             value={1}
             primaryText="Meeting"
             leftIcon={<ContentInbox />}
-            containerElement={<NavLink to="/"/>} 
-            />
-            <ListItem
+            containerElement={<NavLink to="/" />}
+          />
+          <ListItem
             value={2}
             primaryText="Meeting Rooms"
             leftIcon={<ActionGrade />}
-            containerElement={<NavLink to="/room"/>} 
-            />
-            <ListItem
+            containerElement={<NavLink to="/room" />}
+          />
+          <ListItem
             value={3}
             primaryText="Device"
             leftIcon={<ContentSend />}
-            containerElement={<Link to="/device"/>} 
-            />
-            <ListItem
+            containerElement={<Link to="/device" />}
+          />
+          <ListItem
             value={4}
             primaryText="User"
             leftIcon={<ContentDrafts />}
-            containerElement={<Link to="/user"/>} 
-            />
-            <ListItem
+            containerElement={<Link to="/user" />}
+          />
+          <ListItem
             value={5}
             primaryText="Help Desk"
             leftIcon={<ContentInbox />}
-            containerElement={<Link to="/helpdesk"/>} 
-            />
-          </SelectableList>
-        </Drawer>
+            containerElement={<Link to="/helpdesk" />}
+          />
+        </SelectableList>
+      </Drawer>
     );
   }
 }

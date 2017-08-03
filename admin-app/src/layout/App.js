@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Route, Switch, Redirect } from 'react-router'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 import Sidebar from './Sidebar'
 import Users from '../view/Users'
 import Meetings from '../view/Meetings'
@@ -15,7 +15,10 @@ import Moment from 'react-moment';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isDrawerOpen : true }
+    this.state = {
+      isDrawerOpen: true,
+      today: Date.now()
+    }
     this.toggleDrawer = this.toggleDrawer.bind(this);
   }
 
@@ -31,6 +34,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
+          {/* <AppBar onLeftIconButtonTouchTap={this.toggleDrawer} iconElementRight={<FlatButton label={<Moment date={this.today} format="LL" />} disabled={true} />} /> */}
           <AppBar onLeftIconButtonTouchTap={this.toggleDrawer} />
           <Sidebar docker={false} open={this.state.isDrawerOpen} onToggleDrawer={this.toggleDrawer} />
           <div style={contentStyle} className="main">
