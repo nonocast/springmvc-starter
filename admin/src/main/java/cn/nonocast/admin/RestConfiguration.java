@@ -1,6 +1,7 @@
 package cn.nonocast.admin;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import cn.nonocast.model.*;
@@ -9,6 +10,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 
 
 @Configuration
+@ComponentScan(basePackages={"cn.nonocast.controller", "cn.nonocast.admin.security"})
 public class RestConfiguration {
     @Bean
     public RepositoryRestConfigurer repositoryRestConfigurer() {
