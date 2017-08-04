@@ -9,13 +9,14 @@ import cn.nonocast.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
-@ComponentScan(basePackages="cn.nonocast.controller")
 public class DatabaseLoader implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
@@ -29,8 +30,10 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        userRepository.save(new User("admin", "admin@yahoo.com", encoder.encode("123456"), "ADMIN"));
         for(int i = 1; i <= 500; ++i) {
-            userRepository.save(new User(String.format("测试用户-%03d", i), String.format("test-%03d@yahoo.com", i)));
+            userRepository.save(new User(String.format("测试用户-%03d", i), String.format("test-%03d@yahoo.com", i), "", "USER"));
         }
 
         int documentCount = 0;

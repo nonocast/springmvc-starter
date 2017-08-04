@@ -9,5 +9,5 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
-    List<User> findByEmail(@Param("name") String name);
+    User findByEmail(@Param("name") String name);
 }

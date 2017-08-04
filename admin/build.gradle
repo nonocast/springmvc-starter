@@ -12,7 +12,7 @@ apply plugin: 'org.springframework.boot'
 dependencies {
 	compile project(":core")
 	compile('com.h2database:h2')
-	// compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-freemarker')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.data:spring-data-rest-hal-browser')
