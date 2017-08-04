@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
-import table from '../component/meeting/TableRedux';
-import dialog from '../component/meeting/DialogRedux';
+import table from '../component/meetings/TableRedux';
+import dialog from '../component/meetings/DialogRedux';
 
 export default combineReducers({
   table,
   dialog
 });
 
-export * as tableActions from '../component/meeting/TableRedux';
-export * as dialogActions from '../component/meeting/DialogRedux';
+export * as tableActions from '../component/meetings/TableRedux';
+export * as dialogActions from '../component/meetings/DialogRedux';

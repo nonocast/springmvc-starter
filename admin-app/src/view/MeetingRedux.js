@@ -1,45 +1,11 @@
-import axios from 'axios'
+import { combineReducers } from 'redux';
 
-const initialState = {
-  current: null
-}
+import view from '../component/meeting/ViewRedux';
+// import dialog from '../component/meetings/DialogRedux';
 
-// reducer
-function meeting(state = initialState, action) {
-  switch(action.type) {
-    case 'LOAD_MEETING_OK':
-      return { current: action.result };
-    case 'RESET_MEETING':
-      return { current: null }
-    default:
-      return state;
-  }
-}
+export default combineReducers({
+  view
+});
 
-const apiurl = '/rest/meetings'
-
-const loadMeetingOK = (result) => {
-  return {
-    type: 'LOAD_MEETING_OK',
-    result
-  }
-}
-
-export const loadMeeting = (id) => {
-  return (dispatch) => {
-    dispatch(loadMeetingOK(initialState.current))
-    axios.get(`${apiurl}/${id}`)
-    .then(function(resp) {
-      dispatch(loadMeetingOK(resp.data));
-    })
-    .catch(function(error) {
-      alert(error);
-    })
-  }
-}
-
-export const reset = () => {
-  return ({ type: 'RESET_MEETING' })
-}
-
-export default meeting;
+export * as viewActions from '../component/meeting/ViewRedux';
+// export * as dialogActions from '../component/meetings/DialogRedux';

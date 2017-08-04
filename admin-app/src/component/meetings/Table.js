@@ -53,7 +53,7 @@ class MeetingTable extends Component {
                 <TableRow key={each.id}>
                   <TableRowColumn><Link to={`/meeting/${each.id}`}>{each.title}</Link></TableRowColumn>
                    <TableRowColumn>{each.chairman}</TableRowColumn> 
-                  <TableRowColumn><Moment locale="zh-cn" format="YYYY年M月D日 a HH:mm">{each.openedAt}</Moment></TableRowColumn>
+                  <TableRowColumn><Moment locale="zh-cn" format="YYYY年M月D日 ahh:mm">{each.openedAt}</Moment></TableRowColumn>
                   <TableRowColumn>
                     <div>
                       <FlatButton style={{ minWidth: 36, marginRight: 10 }} onTouchTap={this.props.openDialog.bind(this, each)}>Edit</FlatButton>
