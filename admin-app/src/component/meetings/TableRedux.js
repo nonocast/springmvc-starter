@@ -30,7 +30,7 @@ const loadMeetingOK = (result) => ({
   result
 })
 
-export const loadMeetings = (page) => {
+export const loadMeetings = (page = 0) => {
   return (dispatch) => {
     axios.get(`${apiurl}?page=${page}`)
     .then(function(resp) {

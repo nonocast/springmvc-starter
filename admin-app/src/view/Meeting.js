@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadMeeting, reset } from './MeetingRedux';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
-import FileDownloadIcon from "material-ui/svg-icons/file/file-download";
-import EditIcon from "material-ui/svg-icons/editor/mode-edit";
-import DeleteIcon from "material-ui/svg-icons/action/delete";
-import { Link } from 'react-router-dom';
+import { Tabs, Tab } from 'material-ui/Tabs';
+import SearchIcon from "material-ui/svg-icons/action/search";
+
+// import FileDownloadIcon from "material-ui/svg-icons/file/file-download";
+// import IconButton from 'material-ui/IconButton';
+// import EditIcon from "material-ui/svg-icons/editor/mode-edit";
+// import DeleteIcon from "material-ui/svg-icons/action/delete";
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-import Moment from 'react-moment';
-import filesize from 'filesize'
+import TextField from 'material-ui/TextField';
+
 import 'moment/locale/zh-cn';
 
 
@@ -49,9 +49,9 @@ class Meeting extends Component {
   render() {
 
     const meeting = this.props.meeting;
-    const buttonDisplay = {
-      display: this.state.selected.length > 0 ? "inline-block" : "none"
-    };
+    // const buttonDisplay = {
+    //   display: this.state.selected.length > 0 ? "inline-block" : "none"
+    // };
 
     if (meeting == null) {
       return null;
@@ -59,12 +59,29 @@ class Meeting extends Component {
 
     return (
       <div>
-        <Toolbar>
-          <ToolbarGroup>
-            <ToolbarTitle text={meeting.title} />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <IconButton tooltip="下载" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
+        <Tabs inkBarStyle={{ zIndex: 1000 }}>
+          <Tab label="基本信息" buttonStyle={{ background: "#7986CB" }}>
+            <div style={{ paddingLeft: 16, paddingRight: 16 }}>
+              <h2>Tab One</h2>
+              <p>This is an example tab.</p>
+              <p>You can put any sort of HTML or react component in here. It even keeps the component state!</p>
+            </div>
+          </Tab>
+          <Tab label="议程" buttonStyle={{ background: "#7986CB" }}>
+            <div style={{ paddingLeft: 16, paddingRight: 16 }}>
+              <h2>Tab Two</h2>
+              <p>This is another example tab.</p>
+            </div>
+          </Tab>
+          <Tab label="文件" buttonStyle={{ background: "#7986CB" }}>
+            <div>
+              <Toolbar>
+                <ToolbarGroup>
+                  <ToolbarTitle text={meeting.title} style={{ color: "#000" }} />
+                </ToolbarGroup>
+
+                <ToolbarGroup>
+                  {/* <IconButton tooltip="下载" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
               <FileDownloadIcon />
             </IconButton>
             <IconButton tooltip="重命名" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
@@ -72,18 +89,26 @@ class Meeting extends Component {
             </IconButton>
             <IconButton tooltip="移除" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
               <DeleteIcon />
-            </IconButton>
+            </IconButton> */}
+                  {/* <SearchIcon style={{ marginRight: 4, color: "#9e9e9e" }} /> */}
+                  <TextField
+                    hintText="搜索文件"
+                    style={{ fontSize: "14" }}
+                    underlineFocusStyle={{ borderColor: "#3F51B5" }} />
+                  <RaisedButton
+                    secondary={true}
+                    containerElement='label'
+                    label='上传文档'>
+                    <input type="file" style={{ display: "none" }} />
+                  </RaisedButton>
 
-            <RaisedButton
-              secondary={true}
-              containerElement='label'
-              label='上传文档'>
-              <input type="file" style={{ display: "none" }} />
-            </RaisedButton>
+                </ToolbarGroup>
+              </Toolbar>
+              <MeetingView {...this.props} />
+            </div>
+          </Tab>
+        </Tabs>
 
-          </ToolbarGroup>
-        </Toolbar>
-        <MeetingView {...this.props} /> 
       </div>
     );
   }

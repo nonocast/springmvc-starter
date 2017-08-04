@@ -78,7 +78,8 @@ class Sidebar extends Component {
           className="sidebar"
           showMenuIconButton={false}
           title="Meeting Studio"
-          onTitleTouchTap={this.props.onToggleDrawer} />
+          onTitleTouchTap={this.props.onToggleDrawer}
+          style={{ background: "#3F51B5" }} />
         <SelectableList>
           <ListItem
             value={1}

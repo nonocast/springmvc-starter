@@ -35,7 +35,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           {/* <AppBar onLeftIconButtonTouchTap={this.toggleDrawer} iconElementRight={<FlatButton label={<Moment date={this.today} format="LL" />} disabled={true} />} /> */}
-          <AppBar onLeftIconButtonTouchTap={this.toggleDrawer} />
+          <AppBar onLeftIconButtonTouchTap={this.toggleDrawer} style={{ background: "#3F51B5" }} />
           <Sidebar docker={false} open={this.state.isDrawerOpen} onToggleDrawer={this.toggleDrawer} />
           <div style={contentStyle} className="main">
             <Switch>

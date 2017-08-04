@@ -29,7 +29,7 @@ const loadUserOK = (result) => ({
   result
 })
 
-export const loadUsers = (page) => {
+export const loadUsers = (page = 0) => {
   return (dispatch) => {
     axios.get(`${apiurl}?page=${page}`)
     .then(function(resp) {

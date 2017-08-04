@@ -24,11 +24,11 @@ class UserTable extends Component {
   }
 
   prevPage() {
-    this.props.loadUsers(this.props.page.number-1);
+    this.props.loadUsers(this.props.page.number - 1);
   }
 
   nextPage() {
-    this.props.loadUsers(this.props.page.number+1);
+    this.props.loadUsers(this.props.page.number + 1);
   }
 
   render() {
@@ -49,7 +49,7 @@ class UserTable extends Component {
               items.map((each) =>
                 <TableRow key={each.id}>
                   {/* <TableRowColumn><Link to={`/user/${each.id}`}>{each.name}</Link></TableRowColumn> */}
-                  <TableRowColumn>{each.name}</TableRowColumn> 
+                  <TableRowColumn>{each.name}</TableRowColumn>
                   <TableRowColumn>{each.email}</TableRowColumn>
                   <TableRowColumn>
                     <div>
