@@ -71,3 +71,6 @@ classes
 
 *.lock
 *.log
+
+upload/
+upload-dir/
