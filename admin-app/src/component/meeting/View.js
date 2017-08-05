@@ -38,9 +38,9 @@ class MeetingView extends Component {
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn style={{ width: "50%" }}>名称</TableHeaderColumn>
+            <TableHeaderColumn></TableHeaderColumn>
             <TableHeaderColumn>大小</TableHeaderColumn>
             <TableHeaderColumn>修改时间</TableHeaderColumn>
-            <TableHeaderColumn></TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={false}>
@@ -50,21 +50,20 @@ class MeetingView extends Component {
                 <TableRowColumn style={{ width: "50%" }}>
                   <FlatButton href="#" label={each.title} />
                 </TableRowColumn>
-                <TableRowColumn>{filesize(each.size)}</TableRowColumn>
-                <TableRowColumn><Moment fromNow>{each.updatedAt}</Moment></TableRowColumn>
                 <TableRowColumn>
                   <IconMenu
                     iconButtonElement={<IconButton><MoreHorizIcon /></IconButton>}
                     anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
                     targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                    useLayerForClickAway={true}
-                  >
+                    useLayerForClickAway={true}>
                     <MenuItem primaryText="打开" leftIcon={<Open />} />
                     <MenuItem primaryText="下载" leftIcon={<Download />} />
                     <MenuItem primaryText="重命名" leftIcon={<Edit />} />
                     <MenuItem primaryText="移除" leftIcon={<Delete />} />
                   </IconMenu>
                 </TableRowColumn>
+                <TableRowColumn>{filesize(each.size)}</TableRowColumn>
+                <TableRowColumn><Moment fromNow>{each.updatedAt}</Moment></TableRowColumn>
               </TableRow>
             )
           }

@@ -16,6 +16,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-freemarker')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.data:spring-data-rest-hal-browser')
+	compile('com.google.guava:guava:19.0')
+	compile('org.apache.commons:commons-lang3:3.0')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
