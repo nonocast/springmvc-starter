@@ -33,7 +33,6 @@ public class DatabaseLoader implements CommandLineRunner {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         userRepository.save(new User("admin", "admin@yahoo.com", encoder.encode("123456"), "ADMIN"));
 
-/*
         for(int i = 1; i <= 500; ++i) {
             userRepository.save(new User(String.format("测试用户-%03d", i), String.format("test-%03d@yahoo.com", i), "", "USER"));
         }
@@ -55,6 +54,5 @@ public class DatabaseLoader implements CommandLineRunner {
                 documentRepository.save(document);
             }
         }
-*/
     }
 }

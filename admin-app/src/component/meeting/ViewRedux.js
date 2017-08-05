@@ -16,7 +16,7 @@ function meeting(state = initialState, action) {
   }
 }
 
-const apiurl = '/rest/meetings'
+const apiurl = '/admin/rest/meetings'
 
 const loadMeetingOK = (result) => {
   return {

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const LOAD_MEETINGS = "LOAD_MEETINGS";
 const LOAD_MEETING = "LOAD_MEETING";
-const apiurl = '/rest/meetings'
+const apiurl = '/admin/rest/meetings'
 
 export default function table(state = {
   items: [],

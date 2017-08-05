@@ -23,6 +23,7 @@ class Meeting extends Component {
     super();
 
     this.handleRowSelection = this.handleRowSelection.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
     this.isSelected = this.isSelected.bind(this);
 
     this.state = {
@@ -37,17 +38,41 @@ class Meeting extends Component {
   componentWillUnmount() {
     this.props.viewActions.reset();
   }
+
   handleRowSelection(selectedRows) {
     this.setState({
       selected: selectedRows
     });
   }
+
   isSelected = (index) => {
     return this.state.selected.indexOf(index) !== -1;
   };
 
-  render() {
+  handleUpload = (e) => {
+    let files = [];
+    let formData = new FormData();
 
+    for(let i = 0; i < e.target.files.length; ++i) {
+      let file = e.target.files[i];
+      console.group("File: ", file.name);
+      console.log("size : " + file.size);
+      console.log("type : " + file.type);
+      console.log("date : " + file.lastModified);
+      console.groupEnd();
+
+      formData.append('file[]', file, file.name);
+    }
+
+    const url = `/admin/rest/meetings/${this.props.meeting.id}/documents`;
+
+    let xhr = new XMLHttpRequest();
+    xhr.onloadend = (() => this.props.viewActions.loadMeeting(this.props.match.params.id)).bind(this);
+    xhr.open('post', url);
+    xhr.send(formData);
+  }
+
+  render() {
     const meeting = this.props.meeting;
     // const buttonDisplay = {
     //   display: this.state.selected.length > 0 ? "inline-block" : "none"
@@ -82,24 +107,24 @@ class Meeting extends Component {
 
                 <ToolbarGroup>
                   {/* <IconButton tooltip="下载" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
-              <FileDownloadIcon />
-            </IconButton>
-            <IconButton tooltip="重命名" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
-              <EditIcon />
-            </IconButton>
-            <IconButton tooltip="移除" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
-              <DeleteIcon />
-            </IconButton> */}
-                  {/* <SearchIcon style={{ marginRight: 4, color: "#9e9e9e" }} /> */}
+                    <FileDownloadIcon />
+                    </IconButton>
+                    <IconButton tooltip="重命名" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton tooltip="移除" iconStyle={{ opacity: "0.7" }} style={buttonDisplay}>
+                      <DeleteIcon />
+                    </IconButton>
+                  <SearchIcon style={{ marginRight: 4, color: "#9e9e9e" }} /> */}
                   <TextField
                     hintText="搜索文件"
-                    style={{ fontSize: "14" }}
+                    style={{ fontSize: "14px" }}
                     underlineFocusStyle={{ borderColor: "#3F51B5" }} />
                   <RaisedButton
                     secondary={true}
                     containerElement='label'
                     label='上传文档'>
-                    <input type="file" style={{ display: "none" }} />
+                    <input type="file" multiple style={{ display: "none" }} onChange={this.handleUpload} />
                   </RaisedButton>
 
                 </ToolbarGroup>

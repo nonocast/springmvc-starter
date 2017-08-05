@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const LOAD_USERS = "LOAD_USERS";
 const LOAD_USER = "LOAD_USER";
-const apiurl = '/rest/users'
+const apiurl = '/admin/rest/users'
 
 export default function table(state = {
   items: [],
