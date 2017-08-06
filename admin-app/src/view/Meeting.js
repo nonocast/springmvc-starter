@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import SearchIcon from "material-ui/svg-icons/action/search";
-
+import UploadingSnackbar from '../react/UploadingSnackbar/UploadingSnackbar';
 // import FileDownloadIcon from "material-ui/svg-icons/file/file-download";
 // import IconButton from 'material-ui/IconButton';
 // import EditIcon from "material-ui/svg-icons/editor/mode-edit";
 // import DeleteIcon from "material-ui/svg-icons/action/delete";
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import TextField from 'material-ui/TextField';
-
+import LinearProgress from 'material-ui/LinearProgress';
 import 'moment/locale/zh-cn';
 
 
 import { bindActionCreators } from 'redux';
 import MeetingView from '../component/meeting/View'
-import { viewActions } from './MeetingRedux'
+import { viewActions, uploadDocuments } from './MeetingRedux'
 
 class Meeting extends Component {
   constructor(props) {
@@ -64,16 +64,11 @@ class Meeting extends Component {
       formData.append('file[]', file, file.name);
     }
 
-    const url = `/admin/rest/meetings/${this.props.meeting.id}/documents`;
-
-    let xhr = new XMLHttpRequest();
-    xhr.onloadend = (() => this.props.viewActions.loadMeeting(this.props.match.params.id)).bind(this);
-    xhr.open('post', url);
-    xhr.send(formData);
+    this.props.uploadDocuments(this.props.meeting, formData);
   }
 
   render() {
-    const meeting = this.props.meeting;
+    const { meeting, upload } = this.props;
     // const buttonDisplay = {
     //   display: this.state.selected.length > 0 ? "inline-block" : "none"
     // };
@@ -81,6 +76,12 @@ class Meeting extends Component {
     if (meeting == null) {
       return null;
     };
+
+    const progress =
+      <div style={{ marginTop:17, lineHeight:'20px' }}>
+        <LinearProgress mode="determinate" value={upload.progress} />
+        <span style={{ fontSize:12 }}>{`uploading: ${upload.progress}%`}</span>
+      </div>
 
     return (
       <div>
@@ -126,14 +127,14 @@ class Meeting extends Component {
                     label='上传文档'>
                     <input type="file" multiple style={{ display: "none" }} onChange={this.handleUpload} />
                   </RaisedButton>
-
                 </ToolbarGroup>
               </Toolbar>
+
               <MeetingView {...this.props} />
             </div>
           </Tab>
         </Tabs>
-
+        <UploadingSnackbar open={upload.loading} message={progress} allowClickAway={!upload.loading} />
       </div>
     );
   }
@@ -141,10 +142,12 @@ class Meeting extends Component {
 
 const result = connect(
   state => ({
-    meeting: state.meeting.view.current
+    meeting: state.meeting.view.current,
+    upload: state.meeting.upload
   }),
   dispatch => ({
-    viewActions: bindActionCreators(viewActions, dispatch)
+    viewActions: bindActionCreators(viewActions, dispatch),
+    uploadDocuments: (meeting, formdata) => dispatch(uploadDocuments(meeting, formdata))
   })
 )(Meeting);
 
