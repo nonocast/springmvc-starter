@@ -1,3 +1,5 @@
+import actions from '../../actions'
+
 const initialState = {
   user: null,
   visible: false
@@ -5,7 +7,7 @@ const initialState = {
 
 export default function dialog(state = initialState, action) {
   switch (action.type) {
-    case 'SHOW_USER_MODAL': {
+    case actions.users.create.OPEN_DIALOG: {
       return {
         ...state,
         visible: true,
@@ -13,7 +15,7 @@ export default function dialog(state = initialState, action) {
       };
     }
 
-    case 'HIDE_USER_MODAL': {
+    case actions.users.create.CLOSE_DIALOG: {
       return {
         ...state,
         visible: false,
@@ -26,14 +28,9 @@ export default function dialog(state = initialState, action) {
 }
 
 export function openDialog(user = null) {
-  return {
-    type: 'SHOW_USER_MODAL',
-    user
-  };
+  return { type: actions.users.create.OPEN_DIALOG, user };
 }
 
 export function closeDialog() {
-  return {
-    type: 'HIDE_USER_MODAL'
-  };
+  return { type: actions.users.create.CLOSE_DIALOG };
 }

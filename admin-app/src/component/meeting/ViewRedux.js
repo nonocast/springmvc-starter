@@ -1,3 +1,4 @@
+import actions from '../../actions'
 import axios from 'axios'
 
 const initialState = {
@@ -7,9 +8,9 @@ const initialState = {
 // reducer
 function meeting(state = initialState, action) {
   switch(action.type) {
-    case 'LOAD_MEETING_OK':
+    case actions.meeting.LOAD_OK:
       return { current: action.result };
-    case 'RESET_MEETING':
+    case actions.meeting.RESET:
       return { current: null }
     default:
       return state;
@@ -19,10 +20,11 @@ function meeting(state = initialState, action) {
 const apiurl = '/admin/rest/meetings'
 
 const loadMeetingOK = (result) => {
-  return {
-    type: 'LOAD_MEETING_OK',
-    result
-  }
+  return { type: actions.meeting.LOAD_OK, result }
+}
+
+export const reset = () => {
+  return ({ type: actions.meeting.RESET })
 }
 
 export const loadMeeting = (id) => {
@@ -32,13 +34,9 @@ export const loadMeeting = (id) => {
       dispatch(loadMeetingOK(resp.data));
     })
     .catch(function(error) {
-      alert('ViewRedux/loadMeeting: ' + error);
+
     })
   }
-}
-
-export const reset = () => {
-  return ({ type: 'RESET_MEETING' })
 }
 
 export default meeting;

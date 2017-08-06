@@ -71,12 +71,6 @@ class Snackbar extends Component {
      */
     message: PropTypes.node.isRequired,
     /**
-     * Fired when the action button is touchtapped.
-     *
-     * @param {object} event Action button event.
-     */
-    onActionTouchTap: PropTypes.func,
-    /**
      * Fired when the `Snackbar` is requested to be closed by a click outside the `Snackbar`, or after the
      * `autoHideDuration` timer expires.
      *
@@ -96,9 +90,7 @@ class Snackbar extends Component {
     /**
      * Override the inline-styles of the root element.
      */
-    style: PropTypes.object,
-
-    allowClickAway: PropTypes.bool.isRequired
+    style: PropTypes.object
   };
 
   static contextTypes = {
@@ -202,7 +194,6 @@ class Snackbar extends Component {
       bodyStyle,
       message: messageProp, // eslint-disable-line no-unused-vars
       onRequestClose, // eslint-disable-line no-unused-vars
-      onActionTouchTap,
       style,
       ...other
     } = this.props;
@@ -217,14 +208,13 @@ class Snackbar extends Component {
     const styles = getStyles(this.props, this.context, this.state);
 
     return (
-      <ClickAwayListener onClickAway={open&&this.props.allowClickAway ? this.componentClickAway : null}>
+      <ClickAwayListener onClickAway={open ? this.componentClickAway : null}>
         <div {...other} style={prepareStyles(Object.assign(styles.root, style))}>
           <SnackbarBody
             action={action}
             contentStyle={contentStyle}
             message={message}
             open={open}
-            onActionTouchTap={onActionTouchTap}
             style={bodyStyle}
           />
         </div>

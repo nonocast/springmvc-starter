@@ -29,9 +29,8 @@ class MeetingView extends Component {
 
   render() {
     const { meeting } = this.props;
-    console.log("@@@ View/render: ", meeting);
 
-    if (meeting == null) return null;
+    // if (meeting == null) return null;
 
     return (
       <Table height="70vh" onRowSelection={this.showTableBtns} wrapperStyle={{ padding: 16 }}>

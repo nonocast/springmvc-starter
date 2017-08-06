@@ -1,3 +1,4 @@
+import actions from '../actions'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -134,7 +135,7 @@ class Meeting extends Component {
             </div>
           </Tab>
         </Tabs>
-        <UploadingSnackbar open={upload.loading} message={progress} allowClickAway={!upload.loading} />
+        <UploadingSnackbar open={upload.loading} message={progress} />
       </div>
     );
   }

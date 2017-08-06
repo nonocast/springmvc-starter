@@ -1,17 +1,18 @@
+import actions from '../../actions'
 import axios from 'axios'
 
-const LOAD_USERS = "LOAD_USERS";
-const LOAD_USER = "LOAD_USER";
 const apiurl = '/admin/rest/users'
 
-export default function table(state = {
+const initialState = {
   items: [],
   page: {}
-}, action) {
+}
+
+export default function table(state = initialState, action) {
   switch (action.type) {
-    case LOAD_USERS:
+    case actions.users.LOAD_OK:
       return Object.assign({}, state, {items: action.result}, {page: action.page});
-    case LOAD_USER:action
+    case actions.user.LOAD_OK:
       return Object.assign({}, state, {current: action.result});
     default:
       return state
@@ -19,14 +20,11 @@ export default function table(state = {
 }
 
 const loadUsersOK = (result, page) => ({
-  type: LOAD_USERS,
-  result,
-  page
+  type: actions.users.LOAD_OK, result, page
 })
 
 const loadUserOK = (result) => ({
-  type: LOAD_USER,
-  result
+  type: actions.user.LOAD_OK, result
 })
 
 export const loadUsers = (page = 0) => {

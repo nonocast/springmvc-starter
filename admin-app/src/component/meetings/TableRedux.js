@@ -1,34 +1,30 @@
+import actions from '../../actions'
 import axios from 'axios'
 
-const LOAD_MEETINGS = "LOAD_MEETINGS";
-const LOAD_MEETING = "LOAD_MEETING";
 const apiurl = '/admin/rest/meetings'
 
-export default function table(state = {
+const initialState = {
   items: [],
   page: {},
   current: {}
-}, action) {
+}
+
+export default function table(state = initialState, action) {
   switch (action.type) {
-    case LOAD_MEETINGS:
+    case actions.meetings.LOAD_OK:
       return Object.assign({}, state, {items: action.result}, {page: action.page});
-    case LOAD_MEETING:
+    case actions.meeting.LOAD_OK:
       return Object.assign({}, state, {current: action.result});
     default:
       return state
   }
 }
 
-const loadMeetingsOK = (result, page) => ({
-  type: LOAD_MEETINGS,
-  result,
-  page
-})
+const loadMeetingsOK = (result, page) => 
+  ({ type: actions.meetings.LOAD_OK, result, page })
 
-const loadMeetingOK = (result) => ({
-  type: LOAD_MEETING,
-  result
-})
+const loadMeetingOK = (result) => 
+  ({ type: actions.meeting.LOAD_OK, result })
 
 export const loadMeetings = (page = 0) => {
   return (dispatch) => {
@@ -37,7 +33,7 @@ export const loadMeetings = (page = 0) => {
       dispatch(loadMeetingsOK(resp.data._embedded.meetings, resp.data.page));
     })
     .catch(function(error) {
-      alert(error);
+
     })
   };
 }

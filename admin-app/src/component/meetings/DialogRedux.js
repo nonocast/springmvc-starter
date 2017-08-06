@@ -1,3 +1,5 @@
+import actions from '../../actions'
+
 const initialState = {
   meeting: null,
   visible: false
@@ -5,7 +7,7 @@ const initialState = {
 
 export default function dialog(state = initialState, action) {
   switch (action.type) {
-    case 'SHOW_MEETING_MODAL': {
+    case actions.meetings.create.OPEN_DIALOG: {
       return {
         ...state,
         visible: true,
@@ -13,7 +15,7 @@ export default function dialog(state = initialState, action) {
       };
     }
 
-    case 'HIDE_MEETING_MODAL': {
+    case actions.meetings.create.CLOSE_DIALOG: {
       return {
         ...state,
         visible: false,
@@ -26,14 +28,9 @@ export default function dialog(state = initialState, action) {
 }
 
 export function openDialog(meeting = null) {
-  return {
-    type: 'SHOW_MEETING_MODAL',
-    meeting 
-  };
+  return { type: actions.meetings.create.OPEN_DIALOG, meeting };
 }
 
 export function closeDialog() {
-  return {
-    type: 'HIDE_MEETING_MODAL'
-  };
+  return { type: actions.meetings.create.CLOSE_DIALOG };
 }
