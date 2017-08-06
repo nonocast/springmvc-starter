@@ -33,7 +33,7 @@ export const uploadDocuments = (meeting, formData) => {
 
     xhr.onloadend = () => {
       dispatch(loadMeeting(meeting.id));
-      setInterval(() => { dispatch({ type: 'UPLOAD_DOCUMENT_OK' }); }, 3000);
+      setTimeout(() => { dispatch({ type: 'UPLOAD_DOCUMENT_OK' }); }, 3000);
     }
 
     xhr.upload.onprogress = (e) => {

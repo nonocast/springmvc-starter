@@ -42,7 +42,7 @@ public class DocumentController {
 
         for(MultipartFile each : files) {
             if(each.isEmpty()) continue;
-            storageService.store(each);
+            storageService.store(each, meeting.getId().toString());
             Document document = new Document(
                     Files.getNameWithoutExtension(each.getOriginalFilename()),
                     each.getOriginalFilename(),
